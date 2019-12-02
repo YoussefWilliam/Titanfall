@@ -13,6 +13,7 @@ public class EnemyPilot : MonoBehaviour
     public float enemyStartHealth = 100;
     private float health;
     private bool isDead = false;
+    private bool isHit = false;
 
     [Header("Unity Stuff")]
     public Image healthbar;
@@ -42,7 +43,6 @@ public class EnemyPilot : MonoBehaviour
         agent.ResetPath();
         anim.SetBool("Move", true);
         anim.SetBool("Done", false);
-      
     }
     void agentAttack()
     {
@@ -53,14 +53,33 @@ public class EnemyPilot : MonoBehaviour
             anim.SetBool("Move", false);
             anim.SetBool("Done", false);
             anim.SetBool("Shoot", true);
-            Invoke("playShoot", 0.5f);
+            if (isHit)
+            {
+                anim.SetBool("Hit", true);
+            }
+        }   
+    }
+    void hitEnemy()
+    {
+        if (!isDead && isHit)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+            anim.SetBool("Move", false);
+            anim.SetBool("Done", false);
+            anim.SetBool("Shoot", false);
+            anim.SetBool("Hit", true);
+            Invoke("notHit", 2f);
         }
-       
-
     }
     void playShoot()
     {
         audioManager.Play("Coins");
+    }
+    void notHit()
+    {
+        anim.SetBool("Hit", false);
+        isHit = false;
     }
     void decreaseHealth()
     {
@@ -108,6 +127,12 @@ public class EnemyPilot : MonoBehaviour
             Invoke("destroyEnemy", 5f);
         }
 
+        if (Input.GetKey(KeyCode.H) && !anim.GetBool("Hit") && !isHit)
+        {
+            isHit = true;
+            hitEnemy();
+            FaceTarget();
+        }
 
     }
 }
