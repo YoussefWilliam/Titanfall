@@ -1,57 +1,113 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyPilot : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform target;
     private Animator anim;
-    bool isMoving = false;
-    bool isStop = false;
-    bool shouldStop = false;
+    float minAttackDistance = 50f;
+    float retreadDistance = 15f;
+    public AudioManager audioManager;
+    public float enemyStartHealth = 100;
+    private float health;
+    private bool isDead = false;
 
-    void Start()
+    [Header("Unity Stuff")]
+    public Image healthbar;
+
+   void Start()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(target.position);
-
+        health = enemyStartHealth;
 
     }
+    void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime*10f);
+    }
+    void agentStop()
+    {
+        anim.SetBool("Move", false);
+        anim.SetBool("Done", true);
+        agent.speed = 0.1f;
+    }
+    void agentMove()
+    {
+        agent.isStopped = true;
+        agent.ResetPath();
+        anim.SetBool("Move", true);
+        anim.SetBool("Done", false);
+      
+    }
+    void agentAttack()
+    {
+        if (!isDead)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+            anim.SetBool("Move", false);
+            anim.SetBool("Done", false);
+            anim.SetBool("Shoot", true);
+            Invoke("playShoot", 0.5f);
+        }
+       
 
+    }
+    void playShoot()
+    {
+        audioManager.Play("Coins");
+    }
+    void decreaseHealth()
+    {
+        health-= 1;
+    }
+    void destroyEnemy()
+    {
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
-        float minAttackDistance = 25f;
+        healthbar.fillAmount = health / enemyStartHealth;
+
         float distance = Vector3.Distance(agent.transform.position, target.position);
-        Debug.Log(distance);
-        agent.SetDestination(target.position);
 
-
-        //if (distance < minAttackDistance)
-        //{
-        //  agent.SetDestination(target.position);
-        if (!isMoving)
+        if (distance < minAttackDistance && distance > retreadDistance)
+        {
+            agent.SetDestination(target.position);
+            if (!(anim.GetBool("Move")) && !isDead)
             {
-                anim.SetTrigger("Move");
-                isMoving = true;
+                agentMove();
             }
-        //}
+        }
+        if (distance < retreadDistance && (anim.GetBool("Move")) && !isDead)
+        {
+            agentStop();
+            FaceTarget();
+            InvokeRepeating("agentAttack", 0f,3f);
+        }
 
-        if (agent.remainingDistance <= 9)
+        // Test decrease health bars
+        if (Input.GetKey(KeyCode.Space))
         {
-            isStop = true;
+            decreaseHealth();
         }
-        if (isStop && !shouldStop)
+        if(health <= 0 && !isDead)
         {
-            isMoving = false;
-            anim.SetTrigger("Done");
-            shouldStop = true;
-        }
-        if (agent.remainingDistance <= 0)
-        {
+            anim.SetBool("Move", false);
+            anim.SetBool("Done", false);
+            anim.SetBool("Shoot", false);
+            anim.SetTrigger("Die");
+            isDead = true;
             agent.isStopped = true;
+            Invoke("destroyEnemy", 5f);
         }
-   
+
+
     }
 }
