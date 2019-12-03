@@ -1,0 +1,250 @@
+fileFormatVersion: 2
+guid: 8233791bab55837408982f359042ae45
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: C_BeamBattery
+  - first:
+      1: 100002
+    second: C_Body
+  - first:
+      1: 100004
+    second: C_Bullet
+  - first:
+      1: 100006
+    second: C_Mag
+  - first:
+      1: 100008
+    second: C_MainBattery
+  - first:
+      1: 100010
+    second: C_Sight
+  - first:
+      1: 100012
+    second: C_Trigger
+  - first:
+      1: 100014
+    second: //RootNode
+  - first:
+      4: 400000
+    second: C_BeamBattery
+  - first:
+      4: 400002
+    second: C_Body
+  - first:
+      4: 400004
+    second: C_Bullet
+  - first:
+      4: 400006
+    second: C_Mag
+  - first:
+      4: 400008
+    second: C_MainBattery
+  - first:
+      4: 400010
+    second: C_Sight
+  - first:
+      4: 400012
+    second: C_Trigger
+  - first:
+      4: 400014
+    second: //RootNode
+  - first:
+      23: 2300000
+    second: C_BeamBattery
+  - first:
+      23: 2300002
+    second: C_Body
+  - first:
+      23: 2300004
+    second: C_Bullet
+  - first:
+      23: 2300006
+    second: C_Mag
+  - first:
+      23: 2300008
+    second: C_MainBattery
+  - first:
+      23: 2300010
+    second: C_Sight
+  - first:
+      23: 2300012
+    second: C_Trigger
+  - first:
+      33: 3300000
+    second: C_BeamBattery
+  - first:
+      33: 3300002
+    second: C_Body
+  - first:
+      33: 3300004
+    second: C_Bullet
+  - first:
+      33: 3300006
+    second: C_Mag
+  - first:
+      33: 3300008
+    second: C_MainBattery
+  - first:
+      33: 3300010
+    second: C_Sight
+  - first:
+      33: 3300012
+    second: C_Trigger
+  - first:
+      43: 4300000
+    second: C_Mag
+  - first:
+      43: 4300002
+    second: C_Bullet
+  - first:
+      43: 4300004
+    second: C_Sight
+  - first:
+      43: 4300006
+    second: C_MainBattery
+  - first:
+      43: 4300008
+    second: C_BeamBattery
+  - first:
+      43: 4300010
+    second: C_Trigger
+  - first:
+      43: 4300012
+    second: C_Body
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Heavy(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_Body
+      parentName: Heavy(Clone)
+      position: {x: -0.000030028816, y: 0.0016650688, z: 0.00040943106}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_Trigger
+      parentName: Heavy(Clone)
+      position: {x: -0.000029003615, y: 0.00084367034, z: -0.0042041037}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_BeamBattery
+      parentName: Heavy(Clone)
+      position: {x: -0.000028729435, y: 0.0003423147, z: 0.002564394}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_MainBattery
+      parentName: Heavy(Clone)
+      position: {x: -0.000028622146, y: 0.0016175146, z: -0.002569552}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_Sight
+      parentName: Heavy(Clone)
+      position: {x: -0.000028884406, y: 0.0037640731, z: -0.0029244525}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_Bullet
+      parentName: Heavy(Clone)
+      position: {x: -0.000030738112, y: 0.002125555, z: 0.012254512}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: C_Mag
+      parentName: Heavy(Clone)
+      position: {x: -0.000029003615, y: -0.00058061985, z: -0.0006875326}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.099999994
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

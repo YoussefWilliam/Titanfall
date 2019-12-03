@@ -4,18 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EP3
-  - EP31
-  - EP32
-  - EP2
+  - titanEnemy
+  - pilotEnemy
+  - EP11
+  - EP12
+  - EP13
   - EP21
   - EP22
   - EP23
-  - EP12
-  - EP13
-  - EP1
+  - EP2
+  - EP31
   - EP33
-  - EP11
+  - EP3
   layers:
   - Default
   - TransparentFX

@@ -9865,7 +9865,7 @@ GameObject:
   - component: {fileID: 575697632938599193}
   m_Layer: 0
   m_Name: EnemyPilot3
-  m_TagString: EP32
+  m_TagString: pilotEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

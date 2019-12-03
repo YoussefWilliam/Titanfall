@@ -10,7 +10,8 @@ public class EnemyPilot : MonoBehaviour
     float minAttackDistance = 50f;
     float retreadDistance = 15f;
     public AudioManager audioManager;
-    public float enemyStartHealth = 100;
+    private float enemyStartHealth = 100;
+    private float titanStartHealth = 400;
     private float health;
     private bool isDead = false;
     private bool isHit = false;
@@ -22,7 +23,13 @@ public class EnemyPilot : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        health = enemyStartHealth;
+        if (agent.gameObject.CompareTag("pilotEnemy")){
+            health = enemyStartHealth;
+        }
+        else if (agent.gameObject.CompareTag("titanEnemy"))
+        {
+            health = titanStartHealth;
+        }
 
     }
     void FaceTarget()
@@ -46,6 +53,8 @@ public class EnemyPilot : MonoBehaviour
     }
     void agentAttack()
     {
+        FaceTarget();
+
         if (!isDead)
         {
             agent.isStopped = true;
@@ -92,12 +101,14 @@ public class EnemyPilot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         healthbar.fillAmount = health / enemyStartHealth;
 
         float distance = Vector3.Distance(agent.transform.position, target.position);
 
         if (distance < minAttackDistance && distance > retreadDistance)
         {
+            FaceTarget();
             agent.SetDestination(target.position);
             if (!(anim.GetBool("Move")) && !isDead)
             {
@@ -107,7 +118,7 @@ public class EnemyPilot : MonoBehaviour
         if (distance < retreadDistance && (anim.GetBool("Move")) && !isDead)
         {
             agentStop();
-            FaceTarget();
+            
             InvokeRepeating("agentAttack", 0f,3f);
         }
 
@@ -131,6 +142,10 @@ public class EnemyPilot : MonoBehaviour
         {
             isHit = true;
             hitEnemy();
+            FaceTarget();
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
             FaceTarget();
         }
 
