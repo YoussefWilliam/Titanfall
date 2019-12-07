@@ -1865,6 +1865,7 @@ GameObject:
   - component: {fileID: 3497208261793403487}
   - component: {fileID: -6291554157767433326}
   - component: {fileID: -3500509123274656634}
+  - component: {fileID: 6273634090494014816}
   m_Layer: 0
   m_Name: Titan Scorch
   m_TagString: titanEnemy
@@ -1946,6 +1947,20 @@ MonoBehaviour:
   target: {fileID: 0}
   audioManager: {fileID: 0}
   healthbar: {fileID: 3070217311519962344}
+--- !u!136 &6273634090494014816
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7519268084109249846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.4804373
+  m_Height: 10.435154
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.1549664, z: 0}
 --- !u!1 &7521144127058786643
 GameObject:
   m_ObjectHideFlags: 0

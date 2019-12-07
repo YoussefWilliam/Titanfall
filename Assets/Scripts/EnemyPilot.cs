@@ -4,17 +4,23 @@ using UnityEngine.UI;
 
 public class EnemyPilot : MonoBehaviour
 {
+    private float targetOffset;
     public NavMeshAgent agent;
     public Transform target;
     private Animator anim;
-    float minAttackDistance = 50f;
-    float retreadDistance = 15f;
+    private readonly float minAttackDistance = 50f;
+    private readonly float retreadDistance = 30f ;
     public AudioManager audioManager;
-    private float enemyStartHealth = 100;
-    private float titanStartHealth = 400;
+    private readonly float enemyStartHealth = 100;
+    private readonly float titanStartHealth = 400;
     private float health;
     private bool isDead = false;
     private bool isHit = false;
+    public GameObject canvas;
+    public RifleGun rifleGun;
+    public SniperGun sniperGun;
+    public ShotGun shotGun;
+
 
     [Header("Unity Stuff")]
     public Image healthbar;
@@ -23,20 +29,28 @@ public class EnemyPilot : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        if (agent.gameObject.CompareTag("pilotEnemy")){
+        if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
+        {
             health = enemyStartHealth;
         }
         else if (agent.gameObject.CompareTag("titanEnemy"))
         {
             health = titanStartHealth;
         }
+        targetOffset = 0.5f;
 
+    }
+
+    public void TakeDamage(float gunDamage)
+    {
+        health -= gunDamage;
     }
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime*10f);
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x + targetOffset, 0, direction.z));
+        //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime*10f);
+        transform.rotation = lookRotation;
     }
     void agentStop()
     {
@@ -50,6 +64,8 @@ public class EnemyPilot : MonoBehaviour
         agent.ResetPath();
         anim.SetBool("Move", true);
         anim.SetBool("Done", false);
+        anim.SetBool("Shoot", false);
+
     }
     void agentAttack()
     {
@@ -57,6 +73,18 @@ public class EnemyPilot : MonoBehaviour
 
         if (!isDead)
         {
+            if (agent.gameObject.CompareTag("PilotEnemyRifle"))
+            {
+                rifleGun.Shoot();
+            }
+            if (agent.gameObject.CompareTag("PilotEnemySnipper"))
+            {
+                sniperGun.Shoot();
+            }
+            if (agent.gameObject.CompareTag("PilotEnemyShotgun"))
+            {
+                shotGun.Shoot();
+            }
             agent.isStopped = true;
             agent.ResetPath();
             anim.SetBool("Move", false);
@@ -90,13 +118,14 @@ public class EnemyPilot : MonoBehaviour
         anim.SetBool("Hit", false);
         isHit = false;
     }
+
     void decreaseHealth()
     {
         health-= 1;
     }
     void destroyEnemy()
     {
-        Destroy(gameObject);
+        canvas.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -118,7 +147,6 @@ public class EnemyPilot : MonoBehaviour
         if (distance < retreadDistance && (anim.GetBool("Move")) && !isDead)
         {
             agentStop();
-            
             InvokeRepeating("agentAttack", 0f,3f);
         }
 

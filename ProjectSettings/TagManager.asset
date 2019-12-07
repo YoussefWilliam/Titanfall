@@ -5,17 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - titanEnemy
-  - pilotEnemy
-  - EP11
-  - EP12
-  - EP13
-  - EP21
-  - EP22
-  - EP23
-  - EP2
-  - EP31
-  - EP33
-  - EP3
+  - PilotEnemyRifle
+  - PilotEnemySnipper
+  - PilotEnemyShotgun
   layers:
   - Default
   - TransparentFX
