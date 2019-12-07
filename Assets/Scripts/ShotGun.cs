@@ -7,6 +7,8 @@ public class ShotGun : MonoBehaviour
     public Animator anim;
     public Vector3 offset;
     public Vector3 rotationOffset;
+    public float damage = 70f;
+    public float range = 4f;
 
     // Update is called once per frame
     void Update()
@@ -16,6 +18,11 @@ public class ShotGun : MonoBehaviour
     }
     public void Shoot()
     {
-        Debug.Log("ShotGun shoot");
+        //RaycastHit hit;
+        //if(Physics.Raycast(transform.position, transform.forward, out hit, range))
+        //{
+        //    Debug.Log(hit.transform.name);
+        //}
+
     }
 }

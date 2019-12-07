@@ -233,6 +233,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPilot3(3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5691018478581910500, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5691018477930913631, guid: f7ce96ceda58710459ed132e44704606,
         type: 3}
       propertyPath: m_RootOrder
@@ -258,6 +263,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 172963545}
+    - target: {fileID: 6665173441070508032, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1125416912}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ce96ceda58710459ed132e44704606, type: 3}
 --- !u!1 &58825927 stripped
@@ -686,6 +696,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPilot3(2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5691018478581910500, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5691018477930913631, guid: f7ce96ceda58710459ed132e44704606,
         type: 3}
       propertyPath: m_RootOrder
@@ -711,6 +726,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1554949501}
+    - target: {fileID: 6665173441070508032, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1125416912}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ce96ceda58710459ed132e44704606, type: 3}
 --- !u!4 &429758793 stripped
@@ -1737,8 +1757,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125416908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 2, z: -72.9}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0.1, y: 10, z: -72.9}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1853,6 +1873,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPilot3(1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5691018478581910500, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5691018477930913631, guid: f7ce96ceda58710459ed132e44704606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1923,6 +1948,11 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1022877665}
+    - target: {fileID: 6665173441070508032, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1125416912}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ce96ceda58710459ed132e44704606, type: 3}
 --- !u!1 &1382671241
@@ -2329,7 +2359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1845644863
 Transform:
   m_ObjectHideFlags: 0
@@ -2761,7 +2791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2076226075
 Transform:
   m_ObjectHideFlags: 0
@@ -3162,5 +3192,10 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 1691591122}
+    - target: {fileID: 6665173441070508032, guid: f7ce96ceda58710459ed132e44704606,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1125416912}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ce96ceda58710459ed132e44704606, type: 3}

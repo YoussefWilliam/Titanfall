@@ -6,6 +6,8 @@ public class SniperGun : MonoBehaviour
     public Animator anim;
     public Vector3 offset;
     public Vector3 rotationOffset;
+    public float damage = 85f;
+    public float range = 100f;
 
     // Update is called once per frame
     void Update()
@@ -15,6 +17,11 @@ public class SniperGun : MonoBehaviour
     }
     public void Shoot()
     {
-        Debug.Log("Sniper shoot");
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position, transform.forward, out hit, range))
+        //{
+        //    Debug.Log(hit.transform.name);
+        //}
+
     }
 }

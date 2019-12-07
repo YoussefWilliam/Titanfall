@@ -20,6 +20,7 @@ public class EnemyPilot : MonoBehaviour
     public RifleGun rifleGun;
     public SniperGun sniperGun;
     public ShotGun shotGun;
+    public GameObject shootEffect;
 
 
     [Header("Unity Stuff")]
@@ -56,6 +57,7 @@ public class EnemyPilot : MonoBehaviour
     {
         anim.SetBool("Move", false);
         anim.SetBool("Done", true);
+        shootEffect.SetActive(false);
         agent.speed = 0.1f;
     }
     void agentMove()
@@ -65,6 +67,7 @@ public class EnemyPilot : MonoBehaviour
         anim.SetBool("Move", true);
         anim.SetBool("Done", false);
         anim.SetBool("Shoot", false);
+        shootEffect.SetActive(false);
 
     }
     void agentAttack()
@@ -90,6 +93,7 @@ public class EnemyPilot : MonoBehaviour
             anim.SetBool("Move", false);
             anim.SetBool("Done", false);
             anim.SetBool("Shoot", true);
+            shootEffect.SetActive(true);
             if (isHit)
             {
                 anim.SetBool("Hit", true);
@@ -106,6 +110,7 @@ public class EnemyPilot : MonoBehaviour
             anim.SetBool("Done", false);
             anim.SetBool("Shoot", false);
             anim.SetBool("Hit", true);
+            shootEffect.SetActive(false);
             Invoke("notHit", 2f);
         }
     }

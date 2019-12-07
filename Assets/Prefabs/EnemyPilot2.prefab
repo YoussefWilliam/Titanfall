@@ -11687,6 +11687,7 @@ MonoBehaviour:
   rifleGun: {fileID: 0}
   sniperGun: {fileID: 2881934524983099505}
   shotGun: {fileID: 0}
+  shootEffect: {fileID: 454074503112136813}
   healthbar: {fileID: 8033111450579471255}
 --- !u!136 &-4545833725993144949
 CapsuleCollider:
@@ -12110,21 +12111,6 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 2341263950838695958}
-    - target: {fileID: 856843128404986758, guid: 57d36966a572f404f98c7bedf1ba30f0,
-        type: 3}
-      propertyPath: rotationOffset.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 856843128404986758, guid: 57d36966a572f404f98c7bedf1ba30f0,
-        type: 3}
-      propertyPath: rotationOffset.y
-      value: 25.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 856843128404986758, guid: 57d36966a572f404f98c7bedf1ba30f0,
-        type: 3}
-      propertyPath: rotationOffset.z
-      value: 34.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2320340798149838091, guid: 57d36966a572f404f98c7bedf1ba30f0,
         type: 3}
       propertyPath: m_Name
@@ -12185,6 +12171,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3051079061071893402, guid: 57d36966a572f404f98c7bedf1ba30f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57d36966a572f404f98c7bedf1ba30f0, type: 3}
 --- !u!4 &876284168416847342 stripped
@@ -12205,6 +12196,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6b47ff94bc1cb47b85f6d888734f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &454074503112136813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3051079061071893402, guid: 57d36966a572f404f98c7bedf1ba30f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3178044246403648503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6816445703402221093
 PrefabInstance:
   m_ObjectHideFlags: 0

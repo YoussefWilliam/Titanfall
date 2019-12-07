@@ -11936,6 +11936,7 @@ MonoBehaviour:
   rifleGun: {fileID: 0}
   sniperGun: {fileID: 0}
   shotGun: {fileID: 4062517428108583955}
+  shootEffect: {fileID: 6810043284765143426}
   healthbar: {fileID: 3594920394304705905}
 --- !u!136 &3141557713479360753
 CapsuleCollider:
@@ -12200,6 +12201,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6810043284847677874, guid: 9e0594e3e5dd8134490efad24b2903bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0594e3e5dd8134490efad24b2903bd, type: 3}
 --- !u!4 &6776076758454018737 stripped
@@ -12220,6 +12226,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d852489737874a249923898fd113add5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6810043284765143426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6810043284847677874, guid: 9e0594e3e5dd8134490efad24b2903bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 521445424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1354346691
 PrefabInstance:
   m_ObjectHideFlags: 0
