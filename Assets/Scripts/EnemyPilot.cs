@@ -8,8 +8,8 @@ public class EnemyPilot : MonoBehaviour
     public NavMeshAgent agent;
     public Transform target;
     private Animator anim;
-    private readonly float minAttackDistance = 50f;
-    private readonly float retreadDistance = 30f ;
+    private readonly float minAttackDistance = 10f;
+    private readonly float retreadDistance = 2f ;
     public AudioManager audioManager;
     private readonly float enemyStartHealth = 100;
     private readonly float titanStartHealth = 400;
@@ -20,7 +20,7 @@ public class EnemyPilot : MonoBehaviour
     public RifleGun rifleGun;
     public SniperGun sniperGun;
     public ShotGun shotGun;
-    public GameObject shootEffect;
+    public GameObject player;
 
 
     [Header("Unity Stuff")]
@@ -45,6 +45,7 @@ public class EnemyPilot : MonoBehaviour
     public void TakeDamage(float gunDamage)
     {
         health -= gunDamage;
+        HitTheEnemy();
     }
     void FaceTarget()
     {
@@ -57,7 +58,6 @@ public class EnemyPilot : MonoBehaviour
     {
         anim.SetBool("Move", false);
         anim.SetBool("Done", true);
-        shootEffect.SetActive(false);
         agent.speed = 0.1f;
     }
     void agentMove()
@@ -67,7 +67,6 @@ public class EnemyPilot : MonoBehaviour
         anim.SetBool("Move", true);
         anim.SetBool("Done", false);
         anim.SetBool("Shoot", false);
-        shootEffect.SetActive(false);
 
     }
     void agentAttack()
@@ -93,7 +92,6 @@ public class EnemyPilot : MonoBehaviour
             anim.SetBool("Move", false);
             anim.SetBool("Done", false);
             anim.SetBool("Shoot", true);
-            shootEffect.SetActive(true);
             if (isHit)
             {
                 anim.SetBool("Hit", true);
@@ -110,33 +108,39 @@ public class EnemyPilot : MonoBehaviour
             anim.SetBool("Done", false);
             anim.SetBool("Shoot", false);
             anim.SetBool("Hit", true);
-            shootEffect.SetActive(false);
-            Invoke("notHit", 2f);
+            Invoke("notHit", 0.5f);
         }
-    }
-    void playShoot()
-    {
-        audioManager.Play("Coins");
     }
     void notHit()
     {
         anim.SetBool("Hit", false);
         isHit = false;
     }
-
-    void decreaseHealth()
-    {
-        health-= 1;
-    }
     void destroyEnemy()
     {
         canvas.SetActive(false);
     }
+    void HitTheEnemy()
+    {
+        if (!anim.GetBool("Hit") && !isHit)
+        {
+            isHit = true;
+            hitEnemy();
+            FaceTarget();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
+        {
+            healthbar.fillAmount = health / enemyStartHealth;
+        }
+        else if (agent.gameObject.CompareTag("titanEnemy"))
+        {
+            healthbar.fillAmount = health / titanStartHealth;
+        }
 
-        healthbar.fillAmount = health / enemyStartHealth;
 
         float distance = Vector3.Distance(agent.transform.position, target.position);
 
@@ -155,11 +159,6 @@ public class EnemyPilot : MonoBehaviour
             InvokeRepeating("agentAttack", 0f,3f);
         }
 
-        // Test decrease health bars
-        if (Input.GetKey(KeyCode.Space))
-        {
-            decreaseHealth();
-        }
         if(health <= 0 && !isDead)
         {
             anim.SetBool("Move", false);
@@ -168,19 +167,8 @@ public class EnemyPilot : MonoBehaviour
             anim.SetTrigger("Die");
             isDead = true;
             agent.isStopped = true;
+            player.GetComponent<Player>().CoreUp();
             Invoke("destroyEnemy", 5f);
         }
-
-        if (Input.GetKey(KeyCode.H) && !anim.GetBool("Hit") && !isHit)
-        {
-            isHit = true;
-            hitEnemy();
-            FaceTarget();
-        }
-        if (Input.GetKey(KeyCode.T))
-        {
-            FaceTarget();
-        }
-
     }
 }

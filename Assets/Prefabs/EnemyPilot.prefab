@@ -11739,7 +11739,7 @@ Transform:
   m_GameObject: {fileID: 9134824985441228173}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 51.981968, y: -9.382439, z: -6.3563633}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.080000006, y: 0.080000006, z: 0.080000006}
   m_Children:
   - {fileID: 1759247349656985174}
   - {fileID: 5598844587905172881}
@@ -11936,7 +11936,7 @@ MonoBehaviour:
   rifleGun: {fileID: 0}
   sniperGun: {fileID: 0}
   shotGun: {fileID: 4062517428108583955}
-  shootEffect: {fileID: 6810043284765143426}
+  player: {fileID: 0}
   healthbar: {fileID: 3594920394304705905}
 --- !u!136 &3141557713479360753
 CapsuleCollider:
@@ -12106,26 +12106,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5232676123686512542}
     m_Modifications:
-    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 2743871898698124004}
-    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
-        type: 3}
-      propertyPath: rotationOffset.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
-        type: 3}
-      propertyPath: rotationOffset.y
-      value: 25.56
-      objectReference: {fileID: 0}
-    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
-        type: 3}
-      propertyPath: rotationOffset.z
-      value: 34.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6776076757968461473, guid: 9e0594e3e5dd8134490efad24b2903bd,
         type: 3}
       propertyPath: m_Name
@@ -12201,11 +12181,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6810043284847677874, guid: 9e0594e3e5dd8134490efad24b2903bd,
+    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 2743871898698124004}
+    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
+        type: 3}
+      propertyPath: rotationOffset.x
+      value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
+        type: 3}
+      propertyPath: rotationOffset.y
+      value: 25.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
+        type: 3}
+      propertyPath: rotationOffset.z
+      value: 34.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5160854608361667549, guid: 9e0594e3e5dd8134490efad24b2903bd,
+        type: 3}
+      propertyPath: flash
+      value: 
+      objectReference: {fileID: 1438017270620149193}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0594e3e5dd8134490efad24b2903bd, type: 3}
 --- !u!4 &6776076758454018737 stripped
@@ -12226,9 +12226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d852489737874a249923898fd113add5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6810043284765143426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6810043284847677874, guid: 9e0594e3e5dd8134490efad24b2903bd,
+--- !u!198 &1438017270620149193 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1438017270468343289, guid: 9e0594e3e5dd8134490efad24b2903bd,
     type: 3}
   m_PrefabInstance: {fileID: 521445424}
   m_PrefabAsset: {fileID: 0}

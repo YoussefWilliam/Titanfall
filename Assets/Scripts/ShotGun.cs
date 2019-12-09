@@ -10,6 +10,8 @@ public class ShotGun : MonoBehaviour
     public Vector3 rotationOffset;
     public float damage = 70f;
     public float range = 4f;
+    public ParticleSystem flash;
+
 
     // Update is called once per frame
     void Update()
@@ -20,6 +22,7 @@ public class ShotGun : MonoBehaviour
     public void Shoot()
     {
         FaceTarget();
+        flash.Play();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, range))
         {
