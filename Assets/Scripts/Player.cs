@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public GameObject gameOver;
+
     public GameObject primaryWeapon;
     public GameObject secondryWeapon;
     public KeyCode z;
     public int core;
-    public int hp;
+    public float hp;
 
     public float damage = 10.0f;
     public float range = 100f;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     public Animator anim;
 
     public bool embark;
+    public bool GameOver = false;
 
     void Start()
     {
@@ -52,6 +56,19 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameOver)
+        {
+            if (pauseMenu.activeSelf)
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
         embark = false;
         if (Input.GetKeyDown(z))
         {
@@ -59,12 +76,12 @@ public class Player : MonoBehaviour
             secondryWeapon.SetActive(!secondryWeapon.activeSelf);
         }
 
-        if (Input.GetKeyDown(fireKey) && ammo>0)
+        if (Input.GetKeyDown(fireKey) && ammo>0 && !GameOver)
         {
             Fire();
         }
 
-        if (Input.GetKeyDown(reloadKey))
+        if (Input.GetKeyDown(reloadKey) && !GameOver)
         {
             Reload();
         }
@@ -106,5 +123,14 @@ public class Player : MonoBehaviour
     {
         anim.SetTrigger("Reload");
         ammo = maxAmmo;
+    }
+    public void TakeDamage(float gunDamage)
+    {
+        hp -= gunDamage;
+        if (hp <= 0 && !GameOver)
+        {
+            gameOver.SetActive(true);
+            GameOver = true;
+        }
     }
 }

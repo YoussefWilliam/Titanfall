@@ -10,6 +10,7 @@ public class RifleGun : MonoBehaviour
     public Vector3 rotationOffset;
     public float damage = 10f;
     public float range = 65f;
+    public ParticleSystem flash;
 
     // Update is called once per frame
     void Update()
@@ -20,15 +21,21 @@ public class RifleGun : MonoBehaviour
     public void Shoot()
     {
         FaceTarget();
+        flash.Play();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
 
             // TO DECREASE THE PLAYER HEALTH IF IT WAS HIT
-            if(hit.transform.name == "Player")
+            if (hit.transform.name == "Player")
             {
                 // Decrease his health by the damage points 
+                Player t = hit.transform.GetComponent<Player>();
+                if (t != null)
+                {
+                    t.TakeDamage(damage);
+                }
             }
 
 

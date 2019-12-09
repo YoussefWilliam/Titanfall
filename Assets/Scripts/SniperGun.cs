@@ -9,6 +9,7 @@ public class SniperGun : MonoBehaviour
     public Vector3 rotationOffset;
     public float damage = 85f;
     public float range = 100f;
+    public ParticleSystem flash;
 
     // Update is called once per frame
     void Update()
@@ -19,6 +20,7 @@ public class SniperGun : MonoBehaviour
     public void Shoot()
     {
         FaceTarget();
+        flash.Play();
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, range))
         {
@@ -28,8 +30,12 @@ public class SniperGun : MonoBehaviour
             if (hit.transform.name == "Player")
             {
                 // Decrease his health by the damage points 
+                Player t = hit.transform.GetComponent<Player>();
+                if (t != null)
+                {
+                    t.TakeDamage(damage);
+                }
             }
-
         }
     }
     void FaceTarget()

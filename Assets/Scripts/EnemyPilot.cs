@@ -8,12 +8,15 @@ public class EnemyPilot : MonoBehaviour
     public NavMeshAgent agent;
     public Transform target;
     private Animator anim;
-    private readonly float minAttackDistance = 10f;
-    private readonly float retreadDistance = 2f ;
+    private  float minAttackDistance;
+    private  float retreadDistance;
     public AudioManager audioManager;
     private readonly float enemyStartHealth = 100;
     private readonly float titanStartHealth = 400;
-    private float health;
+
+    private float healthPilot;
+    private float healthTitan;
+
     private bool isDead = false;
     private bool isHit = false;
     public GameObject canvas;
@@ -30,21 +33,28 @@ public class EnemyPilot : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
-        {
-            health = enemyStartHealth;
-        }
-        else if (agent.gameObject.CompareTag("titanEnemy"))
-        {
-            health = titanStartHealth;
-        }
+
+        healthPilot = enemyStartHealth;
+        healthTitan = titanStartHealth;
+
+        minAttackDistance = 30f;
+        retreadDistance = 15f;
+        
         targetOffset = 0.5f;
 
     }
 
     public void TakeDamage(float gunDamage)
     {
-        health -= gunDamage;
+        if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
+        {
+            healthPilot -= gunDamage;
+        }
+        else if (agent.gameObject.CompareTag("TitanEnemyRifle") || agent.gameObject.CompareTag("TitanEnemyShotgun"))
+        {
+            healthTitan -= gunDamage;
+
+        }
         HitTheEnemy();
     }
     void FaceTarget()
@@ -75,7 +85,7 @@ public class EnemyPilot : MonoBehaviour
 
         if (!isDead)
         {
-            if (agent.gameObject.CompareTag("PilotEnemyRifle"))
+            if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("TitanEnemyRifle"))
             {
                 rifleGun.Shoot();
             }
@@ -83,7 +93,7 @@ public class EnemyPilot : MonoBehaviour
             {
                 sniperGun.Shoot();
             }
-            if (agent.gameObject.CompareTag("PilotEnemyShotgun"))
+            if (agent.gameObject.CompareTag("PilotEnemyShotgun") || agent.gameObject.CompareTag("TitanEnemyShotgun"))
             {
                 shotGun.Shoot();
             }
@@ -134,11 +144,11 @@ public class EnemyPilot : MonoBehaviour
     {
         if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
         {
-            healthbar.fillAmount = health / enemyStartHealth;
+            healthbar.fillAmount = healthPilot / enemyStartHealth;
         }
-        else if (agent.gameObject.CompareTag("titanEnemy"))
+        else if (agent.gameObject.CompareTag("TitanEnemyRifle") || agent.gameObject.CompareTag("TitanEnemyShotgun"))
         {
-            healthbar.fillAmount = health / titanStartHealth;
+            healthbar.fillAmount = healthTitan / titanStartHealth;
         }
 
 
@@ -159,7 +169,7 @@ public class EnemyPilot : MonoBehaviour
             InvokeRepeating("agentAttack", 0f,3f);
         }
 
-        if(health <= 0 && !isDead)
+        if((healthTitan <= 0 || healthPilot <=0) && !isDead)
         {
             anim.SetBool("Move", false);
             anim.SetBool("Done", false);

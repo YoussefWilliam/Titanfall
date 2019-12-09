@@ -13,6 +13,7 @@ public class ShotGun : MonoBehaviour
     public ParticleSystem flash;
 
 
+
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +33,11 @@ public class ShotGun : MonoBehaviour
             if (hit.transform.name == "Player")
             {
                 // Decrease his health by the damage points 
+                Player t = hit.transform.GetComponent<Player>();
+                if (t != null)
+                {
+                    t.TakeDamage(damage);
+                }
             }
 
 
