@@ -26,6 +26,7 @@ public class EnemyPilot : MonoBehaviour
     public GameObject player;
 
 
+
     [Header("Unity Stuff")]
     public Image healthbar;
 
@@ -49,11 +50,12 @@ public class EnemyPilot : MonoBehaviour
         if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
         {
             healthPilot -= gunDamage;
+            audioManager.Play("HitEnemy");
         }
-        else if (agent.gameObject.CompareTag("TitanEnemyRifle") || agent.gameObject.CompareTag("TitanEnemyShotgun"))
+        if (agent.gameObject.CompareTag("TitanEnemyRifle") || agent.gameObject.CompareTag("TitanEnemyShotgun"))
         {
             healthTitan -= gunDamage;
-
+            audioManager.Play("TitanHit");
         }
         HitTheEnemy();
     }
@@ -129,14 +131,26 @@ public class EnemyPilot : MonoBehaviour
     void destroyEnemy()
     {
         canvas.SetActive(false);
+
     }
     void HitTheEnemy()
     {
         if (!anim.GetBool("Hit") && !isHit)
         {
             isHit = true;
+
+            if (agent.gameObject.CompareTag("PilotEnemyRifle") || agent.gameObject.CompareTag("PilotEnemySnipper") || agent.gameObject.CompareTag("PilotEnemyShotgun"))
+            {
+                audioManager.Play("EnemyisHit");
+            }
+            else if (agent.gameObject.CompareTag("TitanEnemyRifle") || agent.gameObject.CompareTag("TitanEnemyShotgun"))
+            {
+                audioManager.Play("TitanisHit");
+            }
+
             hitEnemy();
             FaceTarget();
+
         }
     }
     // Update is called once per frame
@@ -178,6 +192,7 @@ public class EnemyPilot : MonoBehaviour
             isDead = true;
             agent.isStopped = true;
             player.GetComponent<Player>().CoreUp();
+            audioManager.Play("EnemyDie");
             Invoke("destroyEnemy", 5f);
         }
     }

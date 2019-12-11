@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using Random = UnityEngine.Random;
+
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -15,15 +17,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
             public float StrafeSpeed = 4.0f;    // Speed when walking sideways
             public float RunMultiplier = 2.0f;   // Speed when sprinting
+            public AudioManager audioManager;
 	        public KeyCode RunKey = KeyCode.LeftShift;
             public float JumpForce = 30f;
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
             [HideInInspector] public float CurrentTargetSpeed = 8f;
+          
 
 #if !MOBILE_INPUT
             private bool m_Running;
-#endif
 
+#endif
+          
             public void UpdateDesiredTargetSpeed(Vector2 input)
             {
 	            if (input == Vector2.zero) return;
@@ -34,18 +39,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 				if (input.y < 0)
 				{
-					//backwards
-					CurrentTargetSpeed = BackwardSpeed;
+                    //backwards
+                    //PlayFootStepAudio();
+                    CurrentTargetSpeed = BackwardSpeed;
 				}
 				if (input.y > 0)
 				{
-					//forwards
-					//handled last as if strafing and moving forward at the same time forwards speed should take precedence
-					CurrentTargetSpeed = ForwardSpeed;
+                    //forwards
+                    //handled last as if strafing and moving forward at the same time forwards speed should take precedence
+                    CurrentTargetSpeed = ForwardSpeed;
 				}
 #if !MOBILE_INPUT
 	            if (Input.GetKey(RunKey))
 	            {
+                    // RUNNING AUDIO
 		            CurrentTargetSpeed *= RunMultiplier;
 		            m_Running = true;
 	            }
@@ -88,7 +95,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
-
+        //[SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
+        //[SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
+        //[SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        //private AudioSource m_AudioSource;
 
         public Vector3 Velocity
         {
@@ -120,9 +130,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Start()
         {
+            //m_AudioSource = GetComponent<AudioSource>();
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
+
         }
 
 
@@ -133,6 +145,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
+                //JUMP AUDIO
             }
         }
 
@@ -155,6 +168,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     (movementSettings.CurrentTargetSpeed*movementSettings.CurrentTargetSpeed))
                 {
                     m_RigidBody.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
+                    //PlayFootStepAudio();
                 }
             }
 
@@ -261,5 +275,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = false;
             }
         }
+        //private void PlayFootStepAudio()
+        //{
+        //    // pick & play a random footstep sound from the array,
+        //    // excluding sound at index 0
+        //    m_AudioSource.clip = m_FootstepSounds[0];
+        //    m_AudioSource.PlayOneShot(m_AudioSource.clip);
+        //    //// move picked sound to index 0 so it's not picked next time
+        //    //m_FootstepSounds[0] = m_FootstepSounds[1];
+        //    //m_FootstepSounds[1] = m_AudioSource.clip;
+        //}
     }
 }
